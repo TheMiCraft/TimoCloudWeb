@@ -1,11 +1,7 @@
 package de.themicraft.timocloud;
 
 import cloud.timo.TimoCloud.api.plugins.TimoCloudPlugin;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
 import de.themicraft.timocloud.servlets.*;
-import org.bson.Document;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.session.DefaultSessionIdManager;
 import org.eclipse.jetty.server.session.SessionHandler;
@@ -14,14 +10,10 @@ import org.eclipse.jetty.servlet.ServletHandler;
 public class TimoCloudWeb extends TimoCloudPlugin {
     static TimoCloudWeb instance;
     ConfigManager configManager;
-    MongoClient mongoClient;
-    MongoCollection<Document> users;
     @Override
     public void onLoad() {
         instance = this;
-//        configManager = new ConfigManager();
-        mongoClient = MongoClients.create("mongodb://timocloud:mM6Jqj49bDTZXTnRJKBM@mongo01.themicraft.de:27017");
-        users = mongoClient.getDatabase("timocloud").getCollection("webusers");
+        configManager = new ConfigManager();
         System.out.println("TimoCloudWeb");
         startRESTService();
     }
@@ -48,8 +40,8 @@ public class TimoCloudWeb extends TimoCloudPlugin {
         }
     }
 
-    public MongoCollection<Document> getUsers() {
-        return users;
+    public ConfigManager getConfigManager() {
+        return configManager;
     }
 
     public static TimoCloudWeb getInstance() {

@@ -43,7 +43,7 @@ public class ProxyGroupServlet extends HttpServlet {
                 "<h4>MOTD: " + proxyGroup.getMotd() + "</h4>" +
                 "<h4>Priority: " + proxyGroup.getPriority() + "</h4>" +
                 "<h4>Java-Parameters: " + proxyGroup.getJavaParameters() + "</h4>" +
-                "<h2>Servers:</h2>" +
+                "<h2>Servergroups:</h2>" +
                 "<ul>#SERVERS#</ul>" +
                 "<h2>Proxys:</h2>" +
                 "<ul>#PROXYS#</ul>";

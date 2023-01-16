@@ -1,5 +1,6 @@
 package de.themicraft.timocloud;
 
+import cloud.timo.TimoCloud.api.TimoCloudAPI;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
@@ -13,8 +14,7 @@ import java.util.Map;
 public class ConfigManager{
 
     private File configFile;
-    private Map<String, Object> config;
-
+    public Map<String, Object> config;
     public ConfigManager() {
         load();
     }
@@ -42,7 +42,6 @@ public class ConfigManager{
     public void set(String key, Object value) {
         getConfig().put(key, value);
     }
-
     
     public void reload() {
         config.clear();
@@ -51,7 +50,8 @@ public class ConfigManager{
 
     private void load() {
         try {
-            this.configFile = new File("./TimoCloudWeb/config.yml");
+            this.configFile = new File(new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParent() + "/TimoCloudWeb/webconfig.yml");
+            System.out.println(configFile.getAbsolutePath());
             if(!configFile.exists()) configFile.createNewFile();
             config = (Map<String, Object>) loadYaml(configFile);
             if (config == null) {
@@ -90,7 +90,7 @@ public class ConfigManager{
         return configFile;
     }
 
-    private Map getConfig() {
+    public Map getConfig() {
         return config;
     }
 }
