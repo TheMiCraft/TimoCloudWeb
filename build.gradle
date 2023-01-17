@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('https://maven.timo.cloud/repository/TimoCloud-API/')
+    }
+
+    maven {
+        url = uri('http://repo.maven.apache.org/maven2')
+    }
+}
+
+dependencies {
+    implementation 'org.eclipse.jetty:jetty-server:9.4.40.v20210413'
+    implementation 'org.eclipse.jetty:jetty-servlet:9.4.40.v20210413'
+    compileOnly 'cloud.timo.TimoCloud:TimoCloud-API:6.2.0'
+    implementation 'org.yaml:snakeyaml:1.33'
+}
+
+group = 'de.themicraft'
+version = '0.1.0'
+sourceCompatibility = '1.8'
